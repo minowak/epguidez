@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+    <AutoCompleteTextView 
+    	android:text="" 
+    	android:layout_height="wrap_content" 
+    	android:layout_width="fill_parent" 
+    	android:id="@+id/serialeAutoComplete">
+        <requestFocus></requestFocus>
+    </AutoCompleteTextView>
+    <LinearLayout 
+    	android:orientation="horizontal"
+    	android:layout_height="wrap_content" 
+    	android:layout_width="fill_parent" 
+    	android:id="@+id/linearLayout1">
+        <Button 
+        	android:layout_weight="1" 
+        	android:text="@string/Cancel" 
+        	android:id="@+id/anulujBtn" 
+        	android:layout_height="wrap_content"
+        	android:layout_width="0dp"
+        	android:onClick="anuluj">
+        </Button>
+        <Button 
+        	android:layout_weight="1" 
+        	android:text="@string/Add" 
+        	android:id="@+id/dodajBtn" 
+        	android:layout_height="wrap_content" 
+        	android:layout_width="0dp"
+        	android:onClick="dodaj">
+        </Button>
+    </LinearLayout>
+    
+</LinearLayout>
