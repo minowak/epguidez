@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">Epguidez</string>
+    <string name="addSeries">Dodaj Serial</string>
+    <string name="browseSeries">Przegladaj Seriale</string>
+    <string name="incomingSeries">Nadchodzace</string>
+    <string name="Cancel">Anuluj</string>
+    <string name="Add">Dodaj</string>
+    <string name="Back">Cofnij</string>
+    <string name="deleteSeries">Usun Serial</string>
+</resources>
