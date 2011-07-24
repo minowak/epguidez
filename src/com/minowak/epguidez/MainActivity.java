@@ -58,7 +58,8 @@ public class MainActivity extends Activity {
     
     public void nadchodzaceSeriale(View view) {
     	Intent intent = new Intent(this, NadchodzaceSerialeActivity.class);
-    	intent.putExtra("seriale", linki);
+    	intent.putExtra("linki", linki);
+    	intent.putExtra("seriale", seriale);
     	startActivity(intent);
     }
     
