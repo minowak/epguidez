@@ -17,6 +17,7 @@ import android.widget.TextView;
 public class PrzegladajSerialeActivity extends Activity {
 	private ArrayList<String> seriale;
 	private ArrayList<String> linki;
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
