@@ -12,37 +12,46 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class NadchodzaceSerialeActivity extends Activity {
-	private ArrayList<String> odcinki, seriale; // seriale to linki
+	private ArrayList<String> odcinki, linki, seriale; 
 	private ProgressDialog dialog;
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.przegladaj_seriale);
         
         odcinki = new ArrayList<String>();
-        seriale = new ArrayList<String>();
+        linki = new ArrayList<String>();
         
         Intent intent = getIntent();
+        linki = intent.getExtras().getStringArrayList("linki");
         seriale = intent.getExtras().getStringArrayList("seriale");
         
         znajdzOdcinki();
         
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.list_item, odcinki);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, odcinki);
         
         ListView lv = (ListView) findViewById(R.id.serialeListView);
         lv.setAdapter(adapter);
     }
 	
 	private void znajdzOdcinki() {
-		Iterator<String> iter = seriale.iterator();
+		Iterator<String> iter = linki.iterator();
+		Iterator<String> iter2 = seriale.iterator();
+				
 		while(iter.hasNext()) {
 			String link = iter.next();
+			String nazwa = iter2.next();
 			
 			ArrayList<String> odc = new ArrayList<String>();
 			ArrayList<String> nad = new ArrayList<String>();
 			new HTMLParser(link, odc, nad, this, dialog).write(link);
 		
-			odcinki.addAll(nad);
+			Iterator<String> iter3 = nad.iterator();
+			while(iter3.hasNext()) {
+				String step = iter3.next();
+				odcinki.add(new String(nazwa + " " + step.split("\\s+")[1]));
+			}
 		}
 	}
 	
