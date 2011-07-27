@@ -20,6 +20,7 @@ public class HTMLParser extends Thread {
 	private ArrayList<String> _dane;
 	private String _name;
 	private ArrayList<String> _nad;
+	
 	private String parseLine(String line) {
 		String temp = new String("");
 		boolean tag = false;
@@ -53,24 +54,26 @@ public class HTMLParser extends Thread {
 				skipSpace = false;
 				skipHash = false;
 			}
-			if(temp.charAt(i) == ' ')
-				space = true;
-			else space = false;
+			
 			if(temp.charAt(i) == '[')// || temp.charAt(i) == '&')
 				tag = true;
 			else
-			if(temp.charAt(i) == ']')// || temp.charAt(i) == '\n')
+			if(tag && temp.charAt(i) == ']')// || temp.charAt(i) == '\n')
 				tag = false;
 			else
 			if(!tag && !skipSpace) {
 				result = result + temp.charAt(i);
 			}
+			if(!tag && temp.charAt(i) == ' ')
+				space = true;
+			else space = false;
 		}
 		result = result.trim();
 		
 		if(result.length() == 0 || result.startsWith("Other")) return null;
 		String result2 = new String("");
-		if(lgth == 4) {
+		// ponizsze przez pomylke usuwalo daty w niektorych wierszach 
+	/*	if(lgth == 4) {
 			int l = 0;
 			boolean skip = false;
 			// usuwanie prod #
@@ -82,10 +85,10 @@ public class HTMLParser extends Thread {
 				if(!skip)
 					result2 = result2 + result.charAt(i);
 			}
-		} else return result;
+		} else return result;*/
 		
 		//System.out.println(result);
-		return result2;
+		return result;
 	}
 	
 	public void write (String name) {

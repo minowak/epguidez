@@ -52,8 +52,9 @@ public class PrzegladajSerialeActivity extends Activity {
             		if( ((TextView)view).getText().toString().equals(str1))
             			break;
             	}
-            	
-            	new HTMLParser( link, dane, null, PrzegladajSerialeActivity.this, dialog).write(link);
+            	if(link != null) {
+            		new HTMLParser( link, dane, null, PrzegladajSerialeActivity.this, dialog).write(link);
+            	}
             	
             	Intent intent = new Intent(PrzegladajSerialeActivity.this.getApplicationContext(), SzczegolySerialuActivity.class);
             	intent.putExtra("dane", dane);
