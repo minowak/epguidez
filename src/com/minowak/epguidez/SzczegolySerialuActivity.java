@@ -19,9 +19,8 @@ public class SzczegolySerialuActivity extends Activity {
         ArrayList<String> dane;
         Intent intent = getIntent();
         dane = intent.getExtras().getStringArrayList("dane");
-       // dane.add("test2");
         
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.list_item, dane);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, dane);
         lv.setAdapter(adapter);
 	}
 	
