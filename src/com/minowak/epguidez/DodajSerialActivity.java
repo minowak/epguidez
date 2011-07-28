@@ -1,30 +1,21 @@
 package com.minowak.epguidez;
 
+import java.net.URL;
+import java.net.URLConnection;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class DodajSerialActivity extends Activity {
-	// TODO uzupelnic
-	static final String[] SERIALE = { 
-				"Futurama", "Big Bang Theory", "How I Met Your Mother", "House M.D.", "Californication", "Weeds", "Chuck", 
-				"South Park", "Family Guy", "Breaking Bad", "Mad Men", "True Blood", "The Walking Dead", "Entourage",
-				"Skins", "24h"};
-	static final String[] LINKS = {
-				"futurama", "bigbangtheory", "howimetyourmother", "house", "californication", "weeds", "chuck",
-				"southpark", "familyguy", "breakingbad", "madmen", "trueblood", "walkingdead", "entourage", "skins", "24"};
-	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dodaj_serial);
         
-        AutoCompleteTextView tytulySeriali = (AutoCompleteTextView) findViewById(R.id.serialeAutoComplete);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, SERIALE );
-       tytulySeriali.setAdapter(adapter);
     }
 	
 	public void anuluj(View view) {
@@ -33,20 +24,27 @@ public class DodajSerialActivity extends Activity {
 	}
 	
 	public void dodaj(View view) {
-		AutoCompleteTextView tytul = (AutoCompleteTextView) findViewById(R.id.serialeAutoComplete);
+		EditText tytul = (EditText) findViewById(R.id.serialeAutoComplete);
+		EditText linki = (EditText) findViewById(R.id.linkiAutoComplete);
 		Intent resultIntent = new Intent();
 		
-		int index = 0;
-		for(int i = 0 ; i < SERIALE.length ; i++) {
-			if(SERIALE[i].equals(tytul.getText().toString())) {
-				index = i;
-				break;
+		if(tytul.getText().toString().length() == 0 || linki.getText().toString().length() == 0) {
+			Toast.makeText(this, "Wypelnij wszystkie pola", Toast.LENGTH_SHORT).show();
+			return;
+		} else {
+			try {
+				// czy istnieje
+				URL url = new URL("http://epguides.com/" + linki.getText().toString() + "/");
+				url.openConnection().getInputStream();
+			} catch (Exception e) {
+				Toast.makeText(this, "Zly link", Toast.LENGTH_SHORT).show();
+				return;
 			}
+			
+			resultIntent.putExtra("tytul", tytul.getText().toString());
+			resultIntent.putExtra("link", linki.getText().toString());
+			setResult(Activity.RESULT_OK, resultIntent);
+			finish();
 		}
-		
-		resultIntent.putExtra("tytul", tytul.getText().toString());
-		resultIntent.putExtra("link", LINKS[index]);
-		setResult(Activity.RESULT_OK, resultIntent);
-		finish();
 	}
 }
