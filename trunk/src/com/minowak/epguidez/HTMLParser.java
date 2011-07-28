@@ -40,13 +40,12 @@ public class HTMLParser extends Thread {
 		boolean space = false;
 		boolean skipSpace = false;
 		boolean skipHash = false;
-		int lgth =0;
+
 		for(int i = 0 ; i < temp.length() ; i++) {
 			if(space && temp.charAt(i) == ' ') {
 				skipSpace = true;
 				if(!skipHash) {
 					result = result + "#";
-					lgth++;
 					skipHash = true;
 				}
 			}
@@ -71,7 +70,7 @@ public class HTMLParser extends Thread {
 		result = result.trim();
 		
 		if(result.length() == 0 || result.startsWith("Other")) return null;
-		String result2 = new String("");
+	//	String result2 = new String("");
 		// ponizsze przez pomylke usuwalo daty w niektorych wierszach 
 	/*	if(lgth == 4) {
 			int l = 0;

@@ -1,10 +1,8 @@
 package com.minowak.epguidez;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
