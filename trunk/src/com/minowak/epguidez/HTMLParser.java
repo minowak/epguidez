@@ -127,7 +127,7 @@ public class HTMLParser extends Thread {
 								odcinek = pola[1];
 								data = pola[3];
 								nazwa = pola[4];
-							}
+							} else continue;
 							
 							_dane.add(odcinek + " " + data + " " + nazwa);
 							if(_nad != null) {

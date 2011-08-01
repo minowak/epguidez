@@ -12,13 +12,12 @@
     	android:id="@+id/serialeAutoComplete">
         <requestFocus></requestFocus>
     </EditText>
-    <TextView android:text="Link (http://epguides.com/)" android:id="@+id/link" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+    <TextView android:text="Link (http://epguides.com/XXX)" android:id="@+id/link" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
     <EditText 
     	android:text="" 
     	android:layout_height="wrap_content" 
     	android:layout_width="fill_parent" 
     	android:id="@+id/linkiAutoComplete">
-        <requestFocus></requestFocus>
     </EditText>
     <LinearLayout 
     	android:orientation="horizontal"
